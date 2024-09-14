@@ -38,23 +38,6 @@ The architecture of the project includes:
 - PostgreSQL
 - Docker
 
-## Setup Instructions
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/airscholar/e2e-data-engineering.git
-    ```
-
-2. Change to the project directory:
-    ```bash
-    cd e2e-data-engineering
-    ```
-
-3. Start the services using Docker Compose:
-    ```bash
-    docker-compose up
-    ```
-
 For detailed setup instructions, refer to the video tutorial linked below.
 
 #### SOURCE Tutorial
