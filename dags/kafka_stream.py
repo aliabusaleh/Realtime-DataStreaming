@@ -1,13 +1,14 @@
+import time
+import json
+import logging
+import requests
+
 from datetime import datetime
+from kafka import KafkaProducer
 
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-import json
-import requests
 
-from kafka import KafkaProducer
-import time
-import logging
 
 default_args = {
     'owner': 'Ali',
@@ -35,12 +36,9 @@ def format_data(response):
     data['phone'] = response['phone']
     data['picture'] = response['picture']['medium']
     return data
-
-
-
-def stream_data():
     
 
+def stream_data():
     producer = KafkaProducer(bootstrap_servers=['broker:29092'], max_block_ms=5000)
     curr_time = time.time()
     while True:
@@ -55,7 +53,6 @@ def stream_data():
             continue
     
 
-
 with DAG('user_automation',
          default_args=default_args,
          schedule_interval='@daily',
@@ -65,4 +62,3 @@ with DAG('user_automation',
         task_id='stream_data_from_api',
         python_callable=stream_data
     )
-
